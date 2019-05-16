@@ -1,0 +1,210 @@
+
+  .facility-form {
+    min-width: 150px;
+    max-width: 600px;
+    width: 100%;
+  }
+
+
+  
+  .facility-full-width {
+    min-width:400px;
+    max-width: 800px;
+  }
+
+  .facility-border {
+    border-style: solid;
+  }
+
+  .pad {
+    margin: 5px;
+    padding: 5px;
+  }
+
+  .img-facility{
+    max-width: 250px;
+  }
+
+  .seanceTitle {
+    font-weight: bold;
+  }
+  
+  .container {
+      max-width: auto;
+      max-height: auto;
+      display: flex;
+      flex-direction: column;
+    
+      
+      /* align-content: center; */
+    }
+    
+  
+    
+    
+    
+    
+    .mat-elevation-z5 {
+      background-color: rgb(72, 85, 122);
+    }
+    
+    
+    
+    
+    .menu {
+     
+      text-align: center;
+      background-color: rgb(72, 85, 122);
+      
+      
+    }
+    
+    ul {
+      list-style-type: none;
+      padding: 0;
+      
+    }
+    
+    a {
+      border-bottom: 1px, white solid;
+    }
+    
+    .menu a {
+      list-style-type: none;
+      color: black;
+      border-bottom: 1px, white solid;
+      display: block;
+      /* Make the links appear below each other */
+      padding: 12px;
+      /* Add some padding */
+      text-decoration: none;
+      /* Remove underline from links */
+      
+    }
+    
+    .menu a:hover {
+      background-color: #ccc;
+      /* Dark grey background on mouse-over */
+    }
+    
+    
+    .flex-spacer {
+      flex: 1 1 auto;
+    }
+    
+    
+    mat-row:hover {
+      background-color: rgb(44, 99, 116);
+    }
+    
+    .pad {
+      margin: 5px;
+      padding: 5px;
+    }
+    
+    .flex-spacer {
+      flex: 1 1 auto;
+    }
+  
+  
+  
+  
+  
+  
+  
+  
+   table {
+    background:#666;
+    border-collapse:collapse;
+    width:100%;
+    caption-side: top;
+  }
+  th {
+    color:white;
+  }
+  th, td {
+    text-align:center;
+    padding:5px;
+    border-right:1px solid black;
+  }
+  th:last-child, td:last-child {
+    border-right:0;
+  }
+  tbody tr:nth-child(odd) {
+    background:#ccc;
+  }
+  tbody tr:nth-child(even) {
+    background:#aaa;
+  }
+  @media screen and (max-width:800px) {
+    table {
+      display:flex;
+    }
+    thead {
+      width:20%;
+      min-width:90px;
+    }
+    tbody {
+      flex:1;
+    }
+    tr {
+      display:flex;
+      flex-direction:column;
+      font-family: 'Courier New', Courier, monospace;
+    }
+    th, td {
+      text-align:left;
+      border-right:0;
+      border-bottom:1px solid black;
+      font-family: 'Courier New', Courier, monospace;
+    }
+    tr:last-child td:last-child {
+      border-bottom:0;
+    }
+    tbody tr:not(:first-child) td::before {
+      position:absolute;
+      content:'Date';
+      color:white;
+      font-weight:bold;
+      width:calc(20% - 13px);
+      min-width:90px;
+      padding:5px;
+      border-bottom:1px solid black;
+      margin-left:calc(-20% - 2px);
+      margin-top:-5px;
+      font-family: 'Courier New', Courier, monospace;
+    }
+    tbody tr:last-child td:last-child::before {
+      border-bottom:0;
+    }
+    tbody tr:not(:first-child) td:nth-of-type(2)::before {
+      content:'Type';
+    }
+    tbody tr:not(:first-child) td:nth-of-type(3)::before {
+      content:'Coût';
+    }
+  
+  }
+  @media screen and (max-width:461px) {
+    tbody tr:not(:first-child) td::before {
+      margin-left:-95px;
+    }
+  }
+  
+  .title {
+    width:100%; 
+    text-align: center; 
+    height: 50px;
+    font-weight: bold;
+    vertical-align: baseline;
+    padding-top: 20px;
+  }
+
+  .accountability {
+    border-style: solid;
+  }
+
+  .caption-historic{
+    font-weight: bolder;
+  }
+    

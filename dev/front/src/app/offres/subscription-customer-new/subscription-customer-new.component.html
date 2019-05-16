@@ -1,0 +1,55 @@
+<div fxFlex fxLayout fxLayoutAlign="center">
+    <div class="pad">
+        <form [formGroup]="subscriptionForm" class="subscription-form">
+          <div>
+            <mat-form-field class="subscription-full-width">
+                <input matInput readonly placeholder="Nom de l'abonnement" type="text" formControlName="nameSubscription"  [(ngModel)]="nameSubscription">
+            </mat-form-field>
+          </div>
+          <div>
+            <mat-form-field class="subscription-full-width">
+                <input matInput readonly placeholder="Prix de l'abonnement" type="number" formControlName="priceSubscription" [(ngModel)]="priceSubscription">
+            </mat-form-field>
+          </div>
+
+          <div>
+            <mat-form-field class="subscription-full-width">
+                <input matInput readonly placeholder="Durée de l'abonnement" type="string" formControlName="typeAndNbLastSubscription" >
+            </mat-form-field>
+          </div>
+ 
+          <table class="subscription-full-width" cellspacing="0">
+            <tr>
+              <td>
+                <div>
+                    <mat-form-field class="subscription-full-width">
+                        <input matInput type="date" placeholder="Choisissez votre date de début d'abonnement" formControlName="dateOfStartOfSubscription" [(ngModel)]="strDateOfStartOfSubscription"  (keyup)="setDateOfEndOfSubscriptionField()" (click)="setDateOfEndOfSubscriptionField()">
+                    </mat-form-field>
+                </div>
+              </td>
+          </tr>
+          </table>
+          <div *ngIf="isValidDateOfStartOfSubscription">
+            <table class="subscription-full-width" cellspacing="0">
+              <tr>
+                <td>
+                  <div>
+                      <mat-form-field class="subscription-full-width">
+                        <input matInput readonly type="date" placeholder="Fin de l'abonnement" formControlName="dateOfEndOfSubscription" [(ngModel)]="strDateOfEndOfSubscription">
+                    </mat-form-field>
+                  </div>
+                </td>
+              </tr>
+            </table>
+            <div class="pad"></div>
+            <button mat-raised-button [disabled]="subscriptionForm.invalid" (click)="onSubscribe()">Ajouter au panier</button>
+          </div>
+          <div *ngIf="!isValidDateOfStartOfSubscription">
+              <div class="pad-not-valid-date"></div>
+            <button mat-raised-button [disabled]="subscriptionForm.invalid" (click)="onSubscribe()">Ajouter au panier</button>
+          </div>
+       </form>
+    </div>
+  </div>
+
+  

@@ -1,0 +1,256 @@
+
+  <div style="position: relative; text-align:center; height: 350px; vertical-align: bottom; background-image: url('assets/images/smartFitness.jpg'); background-repeat: no-repeat; background-position: center bottom; opacity:0.09;">
+    
+  </div>
+
+  <div *ngIf="!isAuth || (isAuth && authority=='ROLE_CUSTOMER')" style="position: absolute; width:100%; top: 70px; text-align:center;">
+    <span *ngIf="!isAuth" class="welcome-principal">Bienvenue sur Smart Fitness</span>
+    <span *ngIf="isAuth && authority=='ROLE_CUSTOMER'" class="welcome-principal">Bonjour {{fullname}},</span>
+    <br>
+    <span *ngIf="!isAuth" class="welcome-secondaire">Le site de réservation en ligne de séances de fitness</span>
+    <span *ngIf="isAuth && authority=='ROLE_CUSTOMER'" class="welcome-secondaire"> Bienvenue dans votre espace personnel</span>
+    <br><br>
+    <table *ngIf="!isAuth" style="width: 100%">
+     <div class="div-large">
+        <tr style="text-align: center; width: 100%;">
+          <td>
+            <a class="anonymous-listing" (click)="showMustSignIn()"><img style="opacity: 0.5" src="assets/images/resa.png"></a>                        
+          </td>
+          <td>
+            <a class="anonymous-listing" (click)="showMustSignIn()"><img style="opacity: 0.5" src="assets/images/abo.png"></a>                        
+          </td>
+          <td>
+            <a class="anonymous-listing" (click)="showMustSignIn()"><img style="opacity: 0.5" src="assets/images/catalogue.png"></a> 
+          </td>
+        </tr>
+     </div>
+     <div class="div-small">
+        <tr style="text-align: center; width: 100%;">
+          <td>
+            <a class="anonymous-listing" (click)="showMustSignIn()"><img style="opacity: 0.5" src="assets/images/resa.png"></a>  
+            <p></p>                      
+          </td>
+        </tr>
+        <tr style="text-align: center; width: 100%;">
+          <td>
+            <a class="anonymous-listing" (click)="showMustSignIn()"><img style="opacity: 0.5" src="assets/images/abo.png"></a> 
+            <p></p>                      
+          </td>
+        </tr>
+        <tr style="text-align: center; width: 100%;">
+          <td>
+            <a class="anonymous-listing" (click)="showMustSignIn()"><img style="opacity: 0.5" src="assets/images/catalogue.png"></a> 
+            <p></p>
+          </td>
+        </tr>
+     </div>
+    </table>
+    <div class="div-small">
+      <table *ngIf="isAuth && authority=='ROLE_CUSTOMER'" style="width: 100%">
+        <tr style="text-align: center; width: 100%;">
+          <td>
+            <a class="anonymous-listing"  routerLink="/seance-booking" routerLinkActive="active"><img src="assets/images/resa.png"></a>                        
+          </td>
+        </tr>
+        <tr style="text-align: center; width: 100%;">
+          <td>
+            <a class="anonymous-listing"  routerLink="/seance-booking" routerLinkActive="active">Réserver des Séances</a>  
+            <p></p>                  
+          </td>
+        </tr>
+        <tr style="text-align: center; width: 100%;">
+          <td>
+            <a class="anonymous-listing" routerLink="/subscription-customer-proposition" routerLinkActive="active"><img src="assets/images/abo.png"></a>                        
+          </td>
+        </tr>
+        <tr style="text-align: center; width: 100%;">
+          <td>
+            <a class="anonymous-listing" routerLink="/subscription-customer-proposition" routerLinkActive="active">Nos Abonnements</a>  
+            <p></p>                 
+          </td>
+        </tr>
+        <tr style="text-align: center; width: 100%;">
+          <td>
+            <a class="anonymous-listing"  routerLink="/product-listing" routerLinkActive="active"><img src="assets/images/catalogue.png"></a>
+          </td>
+        </tr> 
+        <tr style="text-align: center; width: 100%;"> 
+          <td>
+            <a class="anonymous-listing"  routerLink="/product-listing" routerLinkActive="active">Notre Catalogue</a>
+            <p></p>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div class="div-large">
+      <table *ngIf="isAuth && authority=='ROLE_CUSTOMER'" style="width: 100%">
+        <tr tyle="text-align: center; width: 100%;">
+          <td>
+            <a class="anonymous-listing"  routerLink="/seance-booking" routerLinkActive="active"><img src="assets/images/resa.png"></a>                        
+          </td>
+          <td>
+            <a class="anonymous-listing" routerLink="/subscription-customer-proposition" routerLinkActive="active"><img src="assets/images/abo.png"></a>                        
+          </td>
+          <td>
+            <a class="anonymous-listing"  routerLink="/product-listing" routerLinkActive="active"><img src="assets/images/catalogue.png"></a> 
+        </tr>
+        <tr tyle="text-align: center; width: 100%;">
+          <td>
+            <a class="anonymous-listing"  routerLink="/seance-booking" routerLinkActive="active">Réserver des Séances</a>                    
+          </td>
+          <td>
+            <a class="anonymous-listing" routerLink="/subscription-customer-proposition" routerLinkActive="active">Nos Abonnements</a>                    
+          </td>
+          <td>
+            <a class="anonymous-listing"  routerLink="/product-listing" routerLinkActive="active">Notre Catalogue</a>
+          </td>
+      </tr>
+      </table>
+    </div>
+      <div *ngIf="!isAuth" class="div-evt">
+        <a style="cursor: pointer;" (click)="anonymousRedirectTo(indexEvt)">{{stringTitle}} 
+          <br><span class="sub-title">(Veuillez cliquer pour plus de précisions)</span></a> 
+      </div>
+      <div *ngIf="isAuth && authority=='ROLE_CUSTOMER' && nbEvt > 0" class="div-evt">
+        <a style="cursor: pointer;" (click)="customerRedirectTo(indexEvt)">{{stringTitle}} 
+          <br><span class="sub-title">(Veuillez cliquer pour plus de précisions)</span></a> 
+      </div>
+      <div *ngIf="authority!='ROLE_MANAGER' && authority!='ROLE_ADMIN'" class="pad"></div>
+       <table style="width: 100%">
+        <tr tyle="text-align: center; width: 100%;">
+          <mat-card>
+            <mat-card-content>  
+              <div class="demo-carousel">
+                <mat-carousel
+                  #matCarousel
+                  [timings]="timings"
+                  [autoplay]="autoplay"
+                  [interval]="interval"
+                  [loop]="loop"
+                  [hideArrows]="hideArrows"
+                  [hideIndicators]="hideIndicators"
+                  [color]="color"
+                  [maxWidth]="maxWidth"
+                  [proportion]="proportion"
+                  [useKeyboard]="useKeyboard"
+                  [useMouseWheel]="useMouseWheel"
+                  [orientation]="orientation"
+                  [slides]="slides"
+                >
+                  <mat-carousel-slide
+                    #matCarouselSlide
+                    *ngFor="let slide of slidesList; let i = index"
+                    image="assets/facility{{i}}.jpg"
+                    [overlayColor]="overlayColor"
+                    [hideOverlay]="hideOverlay"
+                  >
+                  </mat-carousel-slide>
+                </mat-carousel>
+              </div>
+        
+            </mat-card-content>
+          </mat-card>
+        </tr>
+      </table>
+  </div>
+  <div *ngIf="isAuth && (authority=='ROLE_MANAGER' || authority=='ROLE_ADMIN')" style="position: absolute; width:100%; top: 110px; text-align:center;">
+      <span class="welcome-principal">Bonjour {{fullname}},</span>
+      <br><br>
+      <span class="welcome-secondaire">
+        Bienvenue dans votre espace
+        <span *ngIf="authority=='ROLE_MANAGER'"> de collaborateur </span>
+        <span *ngIf="authority=='ROLE_ADMIN'"> d'adminnistrateur </span>
+        vous permettant de : <br><br>
+          <table style="width: 100%">
+            <tr tyle="text-align: center; width: 100%;">
+              <td colspan="3"><span class="item-manager">1. Gérer vos infrastructures</span></td>
+            </tr>
+            <tr tyle="text-align: center; width: 100%;">
+              <td>
+                <a class="manager-listing" routerLink="/room-listing" routerLinkActive="active" ><img src="assets/images/salle.jpg" width="95%"></a>                        
+              </td>
+              <td>
+                <a class="manager-listing" routerLink="/facility-category-listing" routerLinkActive="active" ><img src="assets/images/categorie.jpg" width="90%"></a> 
+              </td>
+              <td>
+                <a class="manager-listing" routerLink="/facility-listing" routerLinkActive="active" ><img src="assets/images/salle-musculation.jpg" width="95%"></a> 
+              </td>
+            </tr>
+            <tr tyle="text-align: center; width: 100%;">
+              <td>
+                <a class="manager-listing" routerLink="/room-listing" routerLinkActive="active" >Salle</a>                    
+              </td>
+              <td>
+                <a class="manager-listing" routerLink="/facility-category-listing" routerLinkActive="active" >Catégorie</a>
+              </td>
+              <td>
+                <a class="manager-listing" routerLink="/facility-listing" routerLinkActive="active" >Équipement</a>
+              </td>
+            </tr>
+          </table>
+          <br>
+          <table style="width: 100%">
+            <tr style="text-align: center; width: 100%;">
+                <td colspan="2"><span class="item-manager">2. Gérer vos offres</span></td>
+              </tr>
+              <tr tyle="text-align: center; width: 100%;">
+                  <td>
+                      <a class="manager-listing" routerLink="/subscription-category-listing" routerLinkActive="active" ><img src="assets/images/abonnement.jpg" width="90%"></a> 
+                    </td>
+                  <td>
+                    <a class="manager-listing" routerLink="/watch-category-listing" routerLinkActive="active" ><img src="assets/images/Montre-de-sport-connectee-Polar-M600-Noir.jpg" width="55%"></a>                        
+                </td>
+            </tr>
+              <tr style="text-align: center; width: 100%;">
+                  <td>
+                  <a class="manager-listing" routerLink="/subscription-category-listing" routerLinkActive="active" >Les abonnements</a>                   
+                  </td>
+                  <td>
+                  <a class="manager-listing" routerLink="/watch-category-listing" routerLinkActive="active" >Les modèles de montre</a>
+                  </td>
+                </tr>
+          </table>
+          <br>
+          <table style="width: 100%">
+              <tr style="text-align: center; width: 100%;">
+                  <td colspan="2"><span class="item-manager">3. Piloter votre activité</span></td>
+                </tr>
+                <tr style="text-align: center;">
+                    <td style="text-align: center; padding-left:15px;">
+                        <a class="manager-listing" class="manager-listing" style="cursor: pointer;" (click)="onReportingBooking()"><img src="assets/images/img_rentability.jpg" width="90%"></a> 
+                      </td>
+                    <td>
+                      <a class="manager-listing" (click)="onReportingRentability()"><img src="assets/images/img_rate.jpg" width="55%"></a>                        
+                  </td>
+              </tr>
+                <tr style="text-align: center; width: 100%;">
+                    <td>
+                    <a class="manager-listing" class="manager-listing" style="cursor: pointer;" (click)="onReportingBooking()">Évolution du taux de réservation</a>                   
+                    </td>
+                    <td>
+                    <a class="manager-listing" (click)="onReportingRentability()">Rentabilité des équipements</a>
+                    </td>
+                  </tr>
+            </table>
+            <br>
+            <table *ngIf="authority=='ROLE_ADMIN'" style="width: 100%">
+              <tr style="text-align: center; width: 100%;">
+                  <td ><span class="item-manager">4. Gérer les comptes de vos collaborateurs</span></td>
+                </tr>
+                <tr style="text-align: center; width: 100%;">
+                    <td style="text-align: center;  width: 100%; padding: 30px;">
+                      <a class="manager-listing" routerLink="/staff-listing" routerLinkActive="active" ><img src="assets/images/img_collaborateurs.jpg" width="80%"></a> 
+                      </td>
+              </tr>
+              <tr style="text-align: center; width: 100%;">
+                <td style="text-align: center;  width: 100%;">
+                  <a class="manager-listing" routerLink="/staff-listing" routerLinkActive="active" >Le staff</a>
+                </td>
+              </tr>
+            </table>                
+      </span>
+    </div>
+  <!-- <div *ngIf="authority!='ROLE_MANAGER' && authority!='ROLE_ADMIN'" class="pad"></div>
+  <div *ngIf="authority!='ROLE_MANAGER' && authority!='ROLE_ADMIN'" class="mat-app-background"> -->
+    
+  <!-- </div> -->

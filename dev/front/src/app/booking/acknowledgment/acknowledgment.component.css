@@ -1,0 +1,20 @@
+.pad {
+    margin: 50px;
+    padding: 50px;
+  }
+
+  .receipt {
+    font-size: 25px;
+    font-family: 'Agency FB';
+    font-style: italic;
+    color: #b21a73;
+    font-weight: 900;
+  }
+
+  .span-mail {
+    font-size: 25px;
+    font-family: 'Times New Roman', Times, serif;
+    font-style: italic;
+    color: #0c249c;
+    font-weight: 900;
+}

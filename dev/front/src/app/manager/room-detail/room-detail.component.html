@@ -1,0 +1,31 @@
+
+<div fxFlex fxLayout fxLayoutAlign="center">
+    <div class="pad">
+      <form [formGroup]="roomForm" >
+        <mat-form-field class="room-full-width">
+          <input matInput placeholder="Nom de la salle" type="text" formControlName="nameRoom" [(ngModel)]="nameRoom">
+          <mat-error *ngIf="roomForm.controls['nameRoom'].hasError('nameRoom') && roomForm.value.nameRoom">
+            {{errors.nameRoomSame}}
+        </mat-error>
+        <mat-error *ngIf="roomForm.controls['nameRoom'].hasError('required')">
+            {{errors.nameRoom}}
+        </mat-error>
+      </mat-form-field>
+        <div formGroupName="capacityRoomGroup">
+            <mat-form-field class="room-full-width">
+                <input matInput placeholder="Contenance de la salle" type="number" formControlName="capacityRoom" [errorStateMatcher]="confirmValidParentMatcher" [(ngModel)]="capacityRoom">
+                <mat-error>
+                    {{errors.capacityRoom}}
+                </mat-error>
+            </mat-form-field>
+          </div>
+  
+        <button mat-raised-button [disabled]="roomForm.invalid" (click)="onUpdate()">Enregistrer les modifications</button>
+      </form>
+    </div> 
+  </div>
+
+  
+
+
+

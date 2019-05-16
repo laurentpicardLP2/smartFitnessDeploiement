@@ -1,0 +1,163 @@
+<div fxFlex fxLayout fxLayoutAlign="center">
+    <div class="pad">
+        <form [formGroup]="userRegistrationForm" class="customer-form">
+            <p>
+            <mat-form-field class="customer-full-width">
+                <input matInput maxlength="60" required placeholder="Votre prénom" type="text" formControlName="fullname" [(ngModel)]="fullname">
+                <mat-error>
+                    {{errors.fullname}}
+                </mat-error>
+            </mat-form-field>
+            </p>
+           <br>
+           <div formGroupName="emailGroup">
+            <p>
+            <mat-form-field class="customer-full-width">
+                <input matInput required placeholder="Votre adresse email" type="email" formControlName="email" [(ngModel)]="email">
+                <mat-error>
+                    {{errors.email}}
+                </mat-error>
+            </mat-form-field>
+            </p>
+            <mat-form-field class="customer-full-width">    
+                <input matInput required placeholder="Confirmer votre adresse email" type="email" formControlName="confirmEmail" [errorStateMatcher]="confirmValidParentMatcher">
+                <mat-error>
+                    {{errors.confirmEmail}}
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <br>
+           <div class="customer-border-solid">
+                <p>
+                <mat-form-field class="customer-full-width">
+                        <input maxlength="255" matInput required placeholder="Adresse postale" type="text" formControlName="domesticAddress" [(ngModel)]="domesticAddress"> 
+                        <mat-error>
+                                {{errors.adresse}}
+                        </mat-error>         
+                </mat-form-field>
+                </p>
+            
+                <table class="customer-full-width" cellspacing="0"><tr>
+                <td><mat-form-field class="customer-full-width">
+                    <input maxlength="5" matInput required #postalCode maxlength="5" placeholder="Code postal" formControlName="domesticCp" [(ngModel)]="domesticCp">
+                    <mat-error>
+                            {{errors.cp}}
+                    </mat-error>
+                    </mat-form-field></td>
+                <td><mat-form-field class="customer-full-width">
+                    <input maxlength="45" matInput required placeholder="Ville" formControlName="domesticCity" [(ngModel)]="domesticCity">
+                    <mat-error>
+                            {{errors.city}}
+                    </mat-error>
+                </mat-form-field></td>
+                <td><mat-form-field class="customer-full-width">
+                    <input maxlength="45" matInput required placeholder="Pays" formControlName="domesticCountry" [(ngModel)]="domesticCountry">
+                    <mat-error>
+                            {{errors.country}}
+                    </mat-error>
+                </mat-form-field></td>
+                </tr></table>
+            </div> 
+            <p></p>
+            <mat-checkbox formControlName="checkedAdr" (click)="onCopyAdr()" [(ngModel)]="checkedAdrCopy">Adresse de livraison = Adresse postale</mat-checkbox>
+            <div class="customer-border-solid">
+                <p>
+                    <mat-form-field class="customer-full-width">
+                    <input maxlength="255" matInput required placeholder="Adresse de livraison" type="text" formControlName="deliveryAddress" [(ngModel)]="deliveryAddress">
+                    <mat-error>
+                            {{errors.adresse}}
+                    </mat-error>
+                    </mat-form-field>
+                </p>
+                <table class="customer-full-width" cellspacing="0"><tr>
+                    <td><mat-form-field class="customer-full-width">
+                    <input matInput required #postalCode maxlength="5" placeholder="Code postal" formControlName="deliveryCp"  [(ngModel)]="deliveryCp">
+                    <mat-error>
+                        {{errors.cp}}
+                        </mat-error>
+                    </mat-form-field></td>
+                    <td><mat-form-field class="customer-full-width">
+                        <input  maxlength="45" matInput required placeholder="Ville" formControlName="deliveryCity"  [(ngModel)]="deliveryCity">
+                        <mat-error>
+                                {{errors.city}}
+                        </mat-error>
+                        </mat-form-field></td>
+                        <td><mat-form-field class="customer-full-width">
+                    <input  maxlength="45" matInput required placeholder="Pays" formControlName="deliveryCountry"  [(ngModel)]="deliveryCountry">
+                    <mat-error>
+                            {{errors.country}}
+                    </mat-error>
+                    </mat-form-field></td>
+                </tr></table>
+            </div>
+            <br>
+            <div>
+                <p>
+                <mat-form-field class="customer-full-width">
+                    <span matPrefix>&nbsp;</span>
+                    <input type="tel" matInput required placeholder="Telephone" formControlName="tel" [(ngModel)]="tel">
+                    <mat-icon matSuffix>mode_edit</mat-icon>
+                    <mat-error *ngIf="userRegistrationForm.controls['tel'].hasError('required')">
+                        {{errors.tel}}
+                    </mat-error>
+                    <mat-error *ngIf="userRegistrationForm.controls['tel'].hasError('pattern')">
+                        {{errors.telValid}}
+                    </mat-error>
+                </mat-form-field>
+                </p>
+            </div>
+            <br>
+            <div>
+                <p>
+                <mat-form-field class="customer-full-width">
+                    <input matInput required type="date" placeholder="Date de naissance" formControlName="dateOfBirthday" [(ngModel)]="dateOfBirthday">
+                    <mat-icon matSuffix>mode_edit</mat-icon>
+                    <mat-error *ngIf="userRegistrationForm.controls['dateOfBirthday'].hasError('required')">
+                        {{errors.dateOfBirth}}
+                    </mat-error>
+                </mat-form-field>
+                </p>
+            </div>
+            <br>
+            <div>
+         </div>
+         <p>
+            <mat-form-field class="customer-full-width">
+                <input matInput maxlength="40" required placeholder="Votre identifiant" type="text" formControlName="username" [(ngModel)]="username">
+                <mat-error *ngIf="userRegistrationForm.controls['username'].hasError('username') && userRegistrationForm.value.username">
+                    {{errors.usernameSame}}
+                </mat-error>
+                <mat-error *ngIf="userRegistrationForm.controls['username'].hasError('required')">
+                    {{errors.username}}
+                </mat-error>
+            </mat-form-field>
+           </p>
+           <br>
+ 
+            <div formGroupName="passwordGroup">
+                <p>
+                <mat-form-field class="customer-full-width">
+                    <input matInput maxlength="128" required placeholder="Votre mot de passe" [type]="hide ? 'password' : 'text'" formControlName="password" [(ngModel)]="password">
+                    
+                    <mat-error>
+                        {{errors.password}}
+                    </mat-error>
+
+                    <mat-icon matSuffix (click)="hide = !hide" style="cursor:pointer;">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </mat-form-field>            
+
+                </p>
+                <mat-form-field class="customer-full-width">
+                        <input matInput maxlength="128" required placeholder="Confirmer votre mot de passe" [type]="hide ? 'password' : 'text'" formControlName="confirmPassword" [errorStateMatcher]="confirmValidParentMatcher">
+                    <mat-error>
+                        {{errors.confirmPassword}}
+                    </mat-error>
+                    <mat-icon matSuffix (click)="hide = !hide" style="cursor:pointer;">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </mat-form-field>
+            </div>
+            <br>
+            <button mat-raised-button [disabled]="userRegistrationForm.invalid" (click)="onRegister()">Enregistrer</button>
+        
+        </form>
+    </div>
+</div>

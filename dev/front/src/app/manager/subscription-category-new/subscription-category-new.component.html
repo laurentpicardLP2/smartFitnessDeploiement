@@ -1,0 +1,58 @@
+<div fxFlex fxLayout fxLayoutAlign="center">
+  <div class="pad">
+      <form [formGroup]="subscriptionCategoryRegistrationForm" class="subscription-category-form">
+        <div>
+          <mat-form-field class="subscription-category-full-width">
+            <input matInput placeholder="Nom du type d'abonnement" type="text" formControlName="nameSubscription" [(ngModel)]="nameSubscription">
+            <mat-error *ngIf="subscriptionCategoryRegistrationForm.controls['nameSubscription'].hasError('nameSubscription') && subscriptionCategoryRegistrationForm.value.nameSubscription">
+              {{errors.nameSubscriptionSame}}
+          </mat-error>
+          <mat-error *ngIf="subscriptionCategoryRegistrationForm.controls['nameSubscription'].hasError('required')">
+              {{errors.nameSubscription}}
+          </mat-error>
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field class="subscription-category-full-width">
+              <input matInput required placeholder="Prix de l'abonnement" type="number" formControlName="priceSubscription" [(ngModel)]="priceSubscription">
+              <mat-error *ngIf="subscriptionCategoryRegistrationForm.controls['priceSubscription'].hasError('required')">
+                {{errors.priceSubscription}}
+            </mat-error>
+            </mat-form-field>
+        </div>
+
+        <table class="subscription-category-full-width" cellspacing="0">
+          <tr>
+            <td>
+              <div formGroupName="nbLastGroup">
+                <mat-form-field class="subscription-category-full-width">
+                  <input matInput required placeholder="Durée de l'abonnement" formControlName="nbLast" [errorStateMatcher]="confirmValidParentMatcher" [(ngModel)]="nbLast">
+                  <mat-error>
+                      {{errors.nbLast}}
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </td>
+            <td>
+              <div>
+                  <mat-form-field class="subscription-category-full-width">
+                      <mat-label>Unité de temps de l'abonnement</mat-label>
+                      <mat-select required name="typeLast" formControlName="typeLast" [(ngModel)]="typeLast">
+                        <mat-option value="Day">Jour</mat-option>
+                        <mat-option value="Week">Semaine</mat-option>
+                        <mat-option value="Month">Mois</mat-option>
+                        <mat-option value="Year">Année</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                    <!-- <mat-error *ngIf="subscriptionCategoryRegistrationForm.controls['typeLast'].hasError('required')">
+                      {{errors.typeLast}}
+                  </mat-error> -->
+                    </div>
+            </td>
+          </tr>
+        </table>
+        <div class="pad"></div>
+        <button mat-raised-button [disabled]="subscriptionCategoryRegistrationForm.invalid" (click)="onRegister()">Register</button>
+      </form>
+  </div>
+</div>

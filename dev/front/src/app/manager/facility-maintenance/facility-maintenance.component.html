@@ -1,0 +1,78 @@
+
+<div fxFlex fxLayout fxLayoutAlign="center">
+  <div class="pad">
+    <form [formGroup]="maintenanceForm" >
+        <div>
+          <mat-form-field class="facility-full-width">
+              <input matInput readonly placeholder="Catégorie de l'équipement" type="text" formControlName="nameFacilityCategory" [(ngModel)]="nameFacilityCategory">
+        </mat-form-field>
+        </div>
+         <div>
+        <mat-form-field class="facility-full-width">
+            <input matInput readonly placeholder="Nom de l'équipement" type="text" formControlName="nameFacility" [(ngModel)]="nameFacility">
+        </mat-form-field>
+
+      </div>
+      <div>
+          <mat-form-field class="facility-full-width">
+              <input matInput placeholder="Coût de l'intervention" type="number" formControlName="costOfIntervention" [(ngModel)]="costOfIntervention">
+          </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field>
+              <input matInput type="date" placeholder="Date de l'intervetion" formControlName="dateOfIntervention" [(ngModel)]="strDateOfIntervention">
+              </mat-form-field>
+          </div>
+          <div>
+              <mat-form-field class="facility-full-width">
+                  <input matInput placeholder="Type de l'intervention" type="text" formControlName="typeOfIntervention" [(ngModel)]="typeOfIntervention">
+              </mat-form-field>
+            </div>
+          <div>
+          <mat-form-field class="facility-full-width">
+              <textarea matInput placeholder="Description de l'intervention" type="text" formControlName="descOfIntervention" [(ngModel)]="descriptionOfIntervention"></textarea>
+          </mat-form-field>
+        </div>
+
+      <button mat-raised-button [disabled]="maintenanceForm.invalid" (click)="onValidate()">Valider</button>
+
+    </form>
+
+    <div class="pad">
+        Recettes : {{balanceSheet[0]}} €<div style="background-color:green; height:20px;" [ngStyle]=" {width: strRevenue}"></div>
+    </div>
+    <div class="pad">
+        Dépenses : {{balanceSheet[1]}} €<div style="background-color:red; height:20px;" [ngStyle]=" {width: strExpenditure}"></div>
+    </div>
+
+    <div class="pad">
+        Valorisation : {{balanceRes}} €<div [ngStyle]="{width: strBalanceWidth, backgroundColor: getColor()}" style="height: 20px;"></div>
+    </div>
+
+    <!-- <div *ngIf="balanceSheet[0] < balanceSheet[1]" class="pad">
+        Bilan : {{balanceRes}} €<div style="background-color:red; height:20px;" [ngStyle]=" {width: strBalance}"></div>
+    </div> -->
+
+    <div class="pad">
+      <span class="caption-historic">Historique des opérations de maintenance</span>
+      <table *ngIf="nbRowsHistoric > 0" cellpadding="0" cellspacing="0">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Type</th>
+              <th>Coût</th>
+            </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let operation of maintenanceOperations">
+            <td>{{convertIntoFormatDate(operation.dateOfIntervention)}}</td>
+            <td>{{operation.typeOfIntervention}}</td>
+            <td>{{convertIntoMonetaryFormat(operation.costOfIntervention)}}</td>
+            <!-- <td><button (click)="onDelete(operation.idMaintenanceOperation)">Delete</button></td> -->
+          </tr>
+        </tbody>
+      </table> 
+    </div>
+  </div>
+  
+</div>

@@ -1,0 +1,27 @@
+.subscription-category-new-container {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .subscription-category-new-container > * {
+    width: 100%;
+  }
+
+  .subscription-category-form {
+    min-width: 350px;
+    max-width: 600px;
+    width: 100%;
+  }
+  
+  .subscription-category-full-width {
+    width: 100%;
+  }
+
+  .subscription-category-border {
+    border-style: solid;
+  }
+
+  .pad {
+    margin: 5px;
+    padding: 5px;
+  }

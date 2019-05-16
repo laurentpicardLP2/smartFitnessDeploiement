@@ -1,0 +1,32 @@
+.subscription-new-container {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .subscription-new-container > * {
+    width: 100%;
+  }
+
+  .subscription-form {
+    min-width: 350px;
+    max-width: 600px;
+    width: 100%;
+  }
+  
+  .subscription-full-width {
+    width: 100%;
+  }
+
+  .subscription-border {
+    border-style: solid;
+  }
+
+  .pad {
+    margin: 5px;
+    padding: 5px;
+  }
+
+  .pad-not-valid-date {
+    margin: 10px;
+    padding: 35px;
+  }

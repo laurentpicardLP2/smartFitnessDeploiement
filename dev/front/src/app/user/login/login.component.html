@@ -1,0 +1,37 @@
+<div style="position: relative; text-align:center; height: 550px; vertical-align: bottom; background-image: url('assets/images/smartFitness.jpg'); background-repeat: no-repeat; background-position: center bottom; opacity:0.15;">
+    
+</div>
+
+<div style="position: absolute; width:100%; top: 70px; text-align:center;">
+
+    <div *ngIf="bReload == false && isLogin==false">
+        <div fxFlex fxLayout fxLayoutAlign="center">
+            <div class="pad">
+                <form [formGroup]="userLoginForm" class="customer-form">
+
+                    <mat-form-field class="customer-full-width">
+                        <input matInput placeholder="Votre identifiant" type="text" formControlName="username"  [(ngModel)]="username">
+                        <mat-error *ngIf="userLoginForm.controls['username'].hasError('required')">
+                            {{errors.loginUsername}}
+                        </mat-error>
+                    </mat-form-field>
+                    
+                    <mat-form-field class="customer-full-width">
+                        <input matInput required placeholder="Votre mot de passe" [type]="hide ? 'password' : 'text'" formControlName="password" [(ngModel)]="password">
+                        <mat-error *ngIf="userLoginForm.controls['password'].hasError('required')">
+                            {{errors.loginPassword}}
+                        </mat-error>
+                        <mat-icon matSuffix (click)="hide = !hide" style="cursor:pointer;">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </mat-form-field>
+                    
+                    <button mat-raised-button [disabled]="userLoginForm.invalid" (click)="onSignIn()">SignIn</button>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+                    

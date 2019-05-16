@@ -1,0 +1,89 @@
+      
+<div *ngIf="!isNotAvailableFacilities && !isBookedTimestamp" style="position: relative; text-align:center; height: 350px; vertical-align: bottom; background-image: url('assets/images/smartFitness.jpg'); background-repeat: no-repeat; background-position: center bottom; opacity:0.09;">
+    
+</div>
+
+<div *ngIf="isBookedTimestamp" style="position: relative; text-align:center; height: 350px; vertical-align: bottom; background-image: url('assets/images/infosReservation.jpg'); background-repeat: no-repeat; background-position: center bottom;">
+    
+</div>
+
+<div *ngIf="isNotAvailableFacilities && !isBookedTimestamp" style="position: relative; text-align:center; height: 350px; vertical-align: bottom; background-image: url('assets/images/warningReservation.jpg'); background-repeat: no-repeat; background-position: center bottom;">
+    
+</div>
+
+<div class="root-div">
+
+<mat-accordion *ngIf="!isBookedTimestamp && isShowableFacilities">
+      <mat-expansion-panel *ngFor="let facilityCategory of listFacilityCategories | async"  >
+          
+          <mat-expansion-panel-header *ngIf="facilityCategory.quantityAvailable > 0 && !isBookedTimestamp">
+            <mat-panel-title>
+              <span *ngIf="!isBookedTimestamp">{{ facilityCategory.nameFacilityCategory }} (dispo : {{ facilityCategory.quantityAvailable }} )</span>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+
+          <table>
+            <tr *ngFor="let facility of facilityCategory.facilities">
+              <td>
+                <div *ngIf="facility.imageFacility =='' ">
+                      <span class="general-libel">{{ facility.nameFacility }} : ({{ convertIntoMonetaryFormat(facility.priceSeance) }} les 10')</span>
+                      <span *ngIf="!this.isSubscribed"><em><br> -50% si vous êtes abonné!</em></span>
+                      <br>
+                    <span *ngIf="facility.descriptionFacility !=''" class="general-libel">
+                      {{ facility.descriptionFacility }}  <br></span>
+                    <a mat-flat-button (click)="onBookingFacility(facility.nameFacility, facilityCategory.nameFacilityCategory, facility.priceSeance)">Sélectionner</a>
+                </div>
+                  <div *ngIf="facility.imageFacility !='' && facility.descriptionFacility ==''" >
+                    <table>
+                      <tr>
+                       <td>
+                        <span class="general-libel">{{ facility.nameFacility }} : ({{ convertIntoMonetaryFormat(facility.priceSeance) }} les 10')</span>
+                            <span *ngIf="!this.isSubscribed" class="no-suscriber-libel"><br> -50% si vous êtes abonné!</span>
+                          </td>
+                          <td rowspan=2>
+                            <img class="img-facility" src="assets/images/facilities/{{ facility.imageFacility }}" />
+                        </td>
+                       </tr>
+                      <tr>
+                        <td>
+                          <a mat-flat-button (click)="onBookingFacility(facility.nameFacility, facilityCategory.nameFacilityCategory, facility.priceSeance)">Sélectionner</a>
+                        </td>
+                      </tr>
+                    </table>   
+                  </div>
+                  <div *ngIf="facility.imageFacility !='' && facility.descriptionFacility !=''" >
+                      <table>
+                        <tr>
+                          <td>
+                            <span class="general-libel">{{ facility.nameFacility }} : ({{ convertIntoMonetaryFormat(facility.priceSeance) }} les 10')</span>
+                            <span *ngIf="!this.isSubscribed" class="no-suscriber-libel"><br> -50% si vous êtes abonné!</span>
+                        </td>
+                         <td rowspan=3>
+                              <img class="img-facility" src="assets/images/facilities/{{ facility.imageFacility }}" />
+                          </td>
+                       </tr>
+                        <tr>
+                          <td>
+                            <span class="general-libel">
+                            {{ facility.descriptionFacility }}
+                          </span>
+                              
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <a mat-flat-button (click)="onBookingFacility(facility.nameFacility, facilityCategory.nameFacilityCategory, facility.priceSeance)">Sélectionner</a>
+                          </td>
+                        </tr>
+                      </table>   
+                    </div>
+                </td>
+              </tr>
+            </table>   
+          
+        
+    </mat-expansion-panel>
+  </mat-accordion>
+</div>
+  
+  

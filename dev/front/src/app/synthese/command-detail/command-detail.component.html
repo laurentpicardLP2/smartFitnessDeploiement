@@ -1,0 +1,36 @@
+
+ <div>
+  <div  class="title" >Votre commande du {{convertIntoDateTime(command.dateOfCommand)}}  </div>
+</div>
+<table cellpadding="0" cellspacing="0">
+ <thead>
+   <tr>
+     <th>Objet</th>
+     <th>Prix</th>
+   </tr>
+ </thead>
+
+
+   <tbody>
+       <tr *ngFor="let commandDetail of command.items">
+           <td>
+             <a *ngIf="getTypeItem(commandDetail.typeItem)=='seance'" routerLink="/seance-detail/{{ commandDetail.idItem }}" routerlinkactive="active" 
+            ng-reflect-router-link-active="active" >Séance</a> <span *ngIf="getTypeItem(commandDetail.typeItem)=='seance'" class="date-seance">  ({{ convertIntoDateTime(commandDetail.dateOfSeance) }})</span>
+            <a *ngIf="getTypeItem(commandDetail.typeItem)=='product'" routerLink="/product-customer-historic/{{ commandDetail.idItem }}/{{ commandDetail.quantityItem }}/{{ idCommand }}" routerlinkactive="active" ng-reflect-router-link-active="active" >{{ getTopicName(commandDetail.typeItem) }}</a>
+            <span *ngIf="getTypeItem(commandDetail.typeItem)=='subscription'">{{ getTopicName(commandDetail.typeItem) }}</span>
+            <a *ngIf="getTypeItem(commandDetail.typeItem)=='subscription'" routerLink="/subscription-customer-historic" routerlinkactive="active" 
+            ng-reflect-router-link-active="active" >(mes abonnements)</a>
+          </td>
+           <td *ngIf="commandDetail.quantityItem === 1">{{ convertIntoMonetaryFormat(commandDetail.price) }}</td>
+           <td *ngIf="commandDetail.quantityItem > 1">{{ commandDetail.quantityItem }} * {{ convertIntoMonetaryFormat(commandDetail.price) }} = {{ convertIntoMonetaryFormat(commandDetail.quantityItem * commandDetail.price) }}</td>
+       </tr>
+     </tbody>
+  </table>
+<br>
+Le montant de votre commande s'élève à : <span  class="total-price" >{{ convertIntoMonetaryFormat(command.totalPrice) }}.</span>
+
+<div class="back-button">
+  <button mat-raised-button mat-button color="primary" routerLink="/command-listing" routerLinkActive="active">Retour</button>
+</div>
+  
+ 

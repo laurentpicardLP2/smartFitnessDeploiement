@@ -1,0 +1,38 @@
+
+
+
+
+
+ <div fxFlex fxLayout="column" fxLayoutAlign="space-around center">
+  <div class="pad">
+    <form [formGroup]="seanceBookingForm" class="customer-form">
+        <mat-form-field>
+      <input matInput [readonly]="!bOpenedSeance" type="date" placeholder="Date de Réservation" formControlName="dateOfBooking" [(ngModel)]="strDateOfBooking"  (keyup)="onChangeDateTime('d')" (click)="onChangeDateTime('d')">
+      </mat-form-field>
+      <mat-form-field>
+      <input matInput type="time" min="06:00" max="21:00" step="600" placeholder="Heure de réservation" formControlName="timeOfBooking" [(ngModel)]="strTimeOfBooking" (keyup)="onChangeDateTime('t')" (click)="onChangeDateTime('t')">
+    </mat-form-field>
+      <button mat-button (click)="onChangeDateTime('')">Consulter</button>
+    </form>
+  </div>
+
+ 
+  <table width="100%">
+    <tr>
+      <td width="140px" style="vertical-align: top;"><router-outlet name="facility-router-outlet"></router-outlet></td>
+      <td style="vertical-align: top;"><router-outlet name="facility-category-router-outlet"></router-outlet></td>
+    </tr>
+  </table>
+
+ 
+    
+</div>
+
+
+    
+
+
+
+
+
+
